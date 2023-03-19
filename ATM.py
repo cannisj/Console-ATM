@@ -8,7 +8,7 @@ from os import system
 
 # System("CLS") To clear the Output after an input or on to the next operation #
 
-balance = 50000
+balance = 10000000
 
 name = input("Who Is Making Use Of This ATM?\n")
 system("CLS")
