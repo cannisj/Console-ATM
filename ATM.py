@@ -23,6 +23,7 @@ print("""
 3.Bill Payment
 4.Balance Check
 5.Support
+6.Deposit
 """)
 decision = str(input("How may I Help You? \n"))
 system("CLS")
@@ -141,6 +142,19 @@ if decision == "5":
         print(name + " We Will have you communicate with an official soon...")
 
         complaint = input(" What seems to be the issue? ")
+    else:
+        print("Sorry You're not allowed here")
+        exit()
+
+if decision == "6":
+    print("Input four digit PIN please")
+    pin = input()
+    system("CLS")
+    if pin == "0000":
+        deposit_amount = int(input("How much would you like to deposit?\n"))
+        system("CLS")
+        balance = balance + deposit_amount
+        print("$", deposit_amount, "Has been deposited.\nYour new balance is: $", balance)
     else:
         print("Sorry You're not allowed here")
         exit()
