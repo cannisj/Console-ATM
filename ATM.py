@@ -9,6 +9,8 @@ from os import system
 # System("CLS") To clear the Output after an input or on to the next operation #
 
 balance = 10000000
+transaction_history = []  # Empty list used to store transaction history
+
 
 name = input("Who Is Making Use Of This ATM?\n")
 system("CLS")
@@ -24,6 +26,7 @@ print("""
 4.Balance Check
 5.Support
 6.Deposit
+7. Mini Statement  # New option added
 """)
 decision = str(input("How may I Help You? \n"))
 system("CLS")
@@ -47,6 +50,7 @@ if decision == "1":
             # Every charge set is different due to the range of money withdrawn #
         Total = balance - withdrawal - charges
         print("$" + str(withdrawal) + " Has been withdrawn.\nTotal is: $" + str(Total))
+        transaction_history.append(f"Withdrawal: -${withdrawal}")  # Record withdrawal
     else:
         print("Sorry You're not allowed here")
         exit()
@@ -66,6 +70,7 @@ if decision == "2":
         trans_ded = balance - trans_fer
         print(name + " You Have Transferred " + str(trans_fer) + " To " + str(
             acct_num) + "\nYour new Account Balance is: $" + str(trans_ded))
+        transaction_history.append(f"Transfer: -${trans_fer}") # Record transfer
     else:
         print("Sorry You're not allowed here")
         exit()
@@ -90,6 +95,7 @@ if decision == "3":
             else:
                 print(name + " The Payment of $" + str(debt) + " To " + str(acct_num) + " Was Successful,\n$" + str(
                     Payment) + " Is your new Account Balance")
+                transaction_history.append(f"Bill Payment: -${debt}") # Record bill payment
 
         if bill == "2":
             airtime = input("For Self or Others?\n")
@@ -105,6 +111,7 @@ if decision == "3":
                     credit = balance - int(credit_withdrawal)
                     print(name + " $" + str(credit_withdrawal) + " Has been sent to " + str(rec_num) + ", \n$" + str(
                         credit) + " Is your new Account Balance")
+                    transaction_history.append(f"Airtime (Self): -${credit_withdrawal}")
             else:
                 rec_num = int(input("Recipient Number:\n"))
                 system("CLS")
@@ -116,6 +123,7 @@ if decision == "3":
                     credit = balance - int(credit_withdrawal)
                     print(name + " $" + str(credit_withdrawal) + " Has been sent to " + str(rec_num) + ", \n$" + str(
                         credit) + " Is your new Account Balance")
+                    transaction_history.append(f"Airtime (Others): -${credit_withdrawal}") 
         if bill == "3":
             print("How many NEPA Points do you want to Buy?")
             nepa_points = input()
@@ -155,9 +163,27 @@ if decision == "6":
         system("CLS")
         balance = balance + deposit_amount
         print("$", deposit_amount, "Has been deposited.\nYour new balance is: $", balance)
+        transaction_history.append(f"Deposit: +${deposit_amount}")  # Record deposit
     else:
         print("Sorry You're not allowed here")
         exit()
+        
+# New option for Mini Statement
+def mini_statement(transaction_history, num_transactions=3):
+    """Displays the last few transactions."""
+    print("\nMini Statement:")
+    if transaction_history:
+        for transaction in transaction_history[-num_transactions:]:
+            print(transaction)
+    else:
+        print("No recent transactions.")
+
+if decision == "7":  # New option for Mini Statement
+    mini_statement(transaction_history) 
+
+else:
+    print("Invalid choice.")
+    exit()
 
 # //////////////    ////////////// #
 #      ///               ///       #
