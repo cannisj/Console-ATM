@@ -17,7 +17,7 @@ system("CLS")
 
 def atm_menu():
     global balance # Declare balance as a global variable
-    
+
     print("Welcome " + name + " To " + Bank + " Bank PLC")
     print("""
     1.Withdrawal
@@ -27,10 +27,11 @@ def atm_menu():
     5.Support
     6.Deposit
     7. Mini Statement  # New option added
+    8. Change PIN        # New option added
     """)
     decision = str(input("How may I Help You? \n"))
     system("CLS")
-    
+
     # Withdrawal #
     if decision == "1":
         print("Input four digit PIN please")
@@ -54,7 +55,7 @@ def atm_menu():
         else:
             print("Sorry You're not allowed here")
             exit()
-    
+
     # Transfer #
     elif decision == "2":
         print("Input four digit PIN Please ")
@@ -72,7 +73,7 @@ def atm_menu():
         else:
             print("Sorry You're not allowed here")
             exit()
-    
+
     # Bill Payment #
     elif decision == "3":
         print("Input four digit PIN Please ")
@@ -122,11 +123,11 @@ def atm_menu():
             if bill == "3":
                 print("How many NEPA Points do you want to Buy?")
                 nepa_points = input()
-    
+
         else:
             print("Sorry You're not allowed here")
             exit()
-    
+
     # Balance Check #
     elif decision == "4":
         print("Input four digit PIN Please ")
@@ -137,7 +138,7 @@ def atm_menu():
         else:
             print("Sorry You're not allowed here")
             exit()
-    
+
     # Support #
     elif decision == "5":
         print("Input four digit PIN Please")
@@ -145,12 +146,12 @@ def atm_menu():
         system("CLS")
         if pin == "0000":
             print(name + " We Will have you communicate with an official soon...")
-    
+
             complaint = input(" What seems to be the issue? ")
         else:
             print("Sorry You're not allowed here")
             exit()
-    
+
     # Deposit #
     elif decision == "6":
         print("Input four digit PIN please")
@@ -165,7 +166,7 @@ def atm_menu():
         else:
             print("Sorry You're not allowed here")
             exit()
-    
+
     # Mini Statement #
     elif decision == "7":  # New option for Mini Statement
         print("\nMini Statement:")
@@ -174,7 +175,11 @@ def atm_menu():
                 print(transaction)
         else:
             print("No recent transactions.")
-    
+
+    # Change PIN #
+    elif decision == "8":
+        change_pin()
+
     else:
         print("Invalid selection. Exiting.")
         exit()
@@ -188,9 +193,30 @@ def atm_menu():
         print("Thank you for using the ATM. Goodbye!")
         exit()
 
+# Function to change the PIN
+def change_pin():
+    """Allows the user to change their PIN."""
+
+    print("Change PIN")
+    old_pin = input("Enter your old PIN: ")
+    system("CLS")
+
+    if old_pin != "0000":  # Assuming the current PIN is "0000"
+        print("Incorrect old PIN. Exiting.")
+        return
+
+    new_pin = input("Enter your new PIN (4 digits): ")
+    system("CLS")
+
+    if len(new_pin) != 4 or not new_pin.isdigit():
+        print("Invalid new PIN. It must be 4 digits. Exiting.")
+        return
+
+    # In a real system, you would update the PIN in a secure database
+    print("PIN changed successfully!")
+
 # Start the ATM program
 atm_menu()
-
 # //////////////    ////////////// #
 #      ///               ///       #
 #     ///               ///        #

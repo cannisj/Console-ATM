@@ -16,3 +16,6 @@ If "no": The program will exit.
 Description: A bug was fixed where the application would raise an UnboundLocalError during a withdrawal operation. This error occurred because the balance variable was not correctly referenced within the atm_menu() function. The issue was resolved by declaring balance as a global variable.
 Technical Details:
 Added global balance inside the atm_menu() function to ensure that the global balance variable is updated correctly after each transaction.
+
+8-24-2024
+Added a change pin option
